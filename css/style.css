@@ -1,0 +1,343 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: #0e1a2b;          
+    --card-bg: #1c2d43;            
+    --text-color: #f0f4f7;        
+    --accent-color: #cc0033;   
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    padding-bottom: 100px;
+}
+
+.hero-header {
+    width: 100%;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.hero-container {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    box-shadow: 0 20px 50px rgba(0,0,0, 0.5); 
+    border-radius: 0 0 15px 15px;
+    overflow: hidden;
+}
+
+.hero-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+
+}
+
+
+.hero-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    
+
+    background: linear-gradient(to bottom, transparent, var(--bg-color));
+    pointer-events: none;
+}
+h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+/*Contenedores de radios (grid)*/
+#stations-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+
+.station-card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.station-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+    border: 1px solid rgba(255,255,255,0.06);
+    background: linear-gradient(0deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+}
+
+.station-card:hover .station-info h3 {
+    color: #fff;
+}
+
+.station-logo {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.station-info h3 {
+    margin: 0;
+    font-size: 1rem;
+    color: #ddd;
+}
+
+/*Reproductor*/
+#player-container {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 800px;
+    
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 3px solid rgba(255, 255, 255, 0.1);
+
+    border-radius: 20px;
+    padding: 15px 30px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.player-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#station-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-top: 5px;
+}
+
+#live-indicator {
+    background-color: rgba(204, 0, 51, 0.14);
+    color: #ffccd6; /* texto más claro que var(--accent-color) */
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    display: inline-block;
+    animation: pulse 2s infinite;
+}
+
+/* reducir intensidad del pulso */
+@keyframes pulse {
+    0% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(0.98); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+
+/* Controles (Botones) */
+.player-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.control-btn {
+    background: var(--accent-color);
+    border: none;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* Redondo */
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 15px rgba(214, 69, 69, 0.2);
+}
+
+.control-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(214, 69, 69, 0.6);
+}
+
+.control-btn:disabled {
+    background: #555;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Volumen */
+.volume-icon {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+width: 24px;
+height: 24px;
+color: #aaa;
+flex-shrink: 0;
+}
+.volume-icon svg {
+width: 100%;
+height: 100%;
+fill: currentColor;
+display: block;
+}
+
+.volume-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #aaa;
+}
+
+input[type=range] {
+    accent-color: var(--accent-color);
+    cursor: pointer;
+}
+
+/* Utilidad para ocultar elementos */
+.hidden {
+    display: none !important;
+}
+
+/* === ARQUITECTURA DASHBOARD (BARRA LATERAL) === */
+
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 260px;
+    background-color: var(--card-bg);
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    
+    /* Mantiene la barra fija al hacer scroll */
+    position: sticky;
+    top: 0;
+    height: 100vh; 
+}
+
+.sidebar-logo h2 {
+    color: var(--text-color);
+    margin-top: 0;
+    margin-bottom: 40px;
+    font-size: 1.5rem;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-grow: 1; /* Empuja el botón de login hacia el fondo */
+}
+
+.sidebar-nav a {
+    color: #aaa;
+    text-decoration: none;
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-nav a:hover, .sidebar-nav a.active {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+}
+
+.sidebar-auth {
+    margin-top: auto;
+}
+
+.btn-login {
+    display: block;
+    text-align: center;
+    background-color: transparent;
+    color: var(--accent-color);
+    text-decoration: none;
+    padding: 12px;
+    border: 2px solid var(--accent-color);
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.btn-login:hover {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.main-content {
+    flex: 1;
+    width: calc(100% - 260px);
+}
+
+/* Diseño Responsivo para móviles */
+@media (max-width: 768px) {
+    .app-container {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 20px;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .main-content {
+        width: 100%;
+    }
+    
+    .sidebar-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Radios Web Chile</title>
+    <link rel="icon" type="image/x-icon" href="assets/icons/radios.ico">
+</head>
+
+<body>
+
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <h2>RadiosWeb</h2>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="index.html" class="active">Inicio</a>
+                <a href="buscador.html">Buscar</a>
+                <a href="favoritos.html">Mis favoritos</a>
+                <a href="faq.html">Preguntas Frecuentes</a>
+            </nav>
+
+            <div class="sidebar-auth">
+                <a href="login.html" class="btn-login">Iniciar Sesión</a>
+            </div>
+        </aside>
+
+        <div class="main-content">
+            <header class="hero-header">
+                <div class="hero-container">
+                    <img src="assets/icons/chile-estaciones.jpg" alt="Chile Estaciones" class="hero-image">
+
+                    <div class="hero-overlay"></div>
+                </div>
+            </header>
+
+
+            <main id="stations-container">
+                <p>Cargando radios...</p>
+            </main>
+    </div>
+
+</div>
+
+    <!--Reproductor fijo en la parte inferior-->
+    <footer id="player-container">
+        <div class="player-info">
+            <div id="live-indicator" class="hidden">EN VIVO</div>
+            <span id="station-name" aria-live="polite">Selecciona una radio</span>
+        </div>
+
+        <div class="player-controls">
+            <button id="btn-play" class="control-btn" aria-label="Reproducir" disabled>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M320-200v-560l440 280-440 280Z"/></svg>
+            </button>
+
+            <button id="btn-pause" class="control-btn hidden" aria-label="Pausar">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M560-200v-560h160v560H560Zm-320 0v-560h160v560H240Z"/></svg>
+            </button>
+        </div>
+
+        <div class="volume-controls">
+            <span class="volume-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="#aaa"><path d="M560-131v-82q90-26 145-100t55-168q0-94-55-168T560-749v-82q124 28 202 125.5T840-481q0 127-78 224.5T560-131ZM120-360v-240h160l200-200v640L280-360H120Zm440 40v-322q47 22 73.5 66t26.5 96q0 51-26.5 94.5T560-320Z"/></svg>
+            </span>
+            <label for="volume-slider">Volumen</label>
+            <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="1">
+
+
+        </div>
+
+        <audio id="radio-player"></audio>
+    </footer>
+
+    <!--Scripts: es importante el orden -->
+    <!--1. Libreria HLS para reproducir streams .m3u8-->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1.4.15"></script>
+    <!--2. Los datos de las radios-->
+    <script src="js/stations.js"></script>
+    <!--3. Logica del reproductor-->
+    <script src="js/player.js"></script>
+    <!--4. Logica principal de la app-->
+    <script src="js/app.js"></script>
+</body>
+
+</html>
+
