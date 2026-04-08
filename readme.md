@@ -27,7 +27,7 @@ El objetivo principal es proveer una plataforma unificada, libre de distraccione
 
 ### Fase 1: Estructura y Navegacion (Frontend UI)
 - [x] 1.1 Reestructurar index.html: Implementar arquitectura de barra lateral (Dashboard).
-- [ ] 1.2 Vistas de Auth: Maquetar login.html y registro.html (HTML/CSS).
+- [X] 1.2 Vistas de Auth: Maquetar login.html y registro.html (HTML/CSS).
 - [ ] 1.3 Interfaz UX: Añadir campo de buscador en UI y crear faq.html.
 
 ### Fase 2: Base de Datos (MySQL)
@@ -75,3 +75,9 @@ El objetivo principal es proveer una plataforma unificada, libre de distraccione
 └── assets/
     ├── img/            # Logotipos de radios
     └── icons/          # Favicons y recursos UI
+
+---
+
+## Historial de cambios
+- **v0.2** — Login y registro maquetados con hero compacto, validación JS
+  de contraseñas y botón mostrar/ocultar. Paleta de colores revisada.

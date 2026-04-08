@@ -17,8 +17,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         //Al hacer clic, llamamos a la funcion del reproductor
         card.onclick = () => {
-            playRadio(station.stream, station.name);
-        };
+    document.querySelectorAll('.station-card').forEach(c => {
+        c.classList.remove('active');
+    });
+    card.classList.add('active');
+    playRadio(station.stream, station.name, station.logo);
+};
 
         card.innerHTML = `
     <img src="${station.logo}" alt="${station.name}" class="station-logo">

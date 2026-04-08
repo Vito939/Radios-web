@@ -3,10 +3,16 @@
 }
 
 :root {
-    --bg-color: #0e1a2b;          
-    --card-bg: #1c2d43;            
-    --text-color: #f0f4f7;        
-    --accent-color: #cc0033;   
+    --bg-color:     #080f1a;  
+    --card-bg:      #0f1e35; 
+    --card-hover:   #162844;  
+    --text-color:   #f0f4f8;
+    --text-muted:   #7a90a8;
+    --accent-color: #ff0035;   
+    --accent-soft:  #cc0033;  
+    --accent-glow:  rgba(255, 0, 53, 0.18);
+    --border:       rgba(255, 255, 255, 0.06);
+    --success:      #00c896; 
 }
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -78,7 +84,12 @@ h1 {
     padding: 15px;
     text-align: center;
     cursor: pointer;
-    transition: transform 0.2s, background-color 0.2s;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 160px;
 }
 
 .station-card:hover {
@@ -89,6 +100,20 @@ h1 {
 }
 
 .station-card:hover .station-info h3 {
+    color: #fff;
+}
+
+.station-card.active {
+    border: 2px solid var(--accent-color);
+    box-shadow: 0 0 20px rgba(204, 0, 51, 0.3);
+    background: linear-gradient(
+        135deg,
+        rgba(204, 0, 51, 0.08),
+        rgba(28, 45, 67, 1)
+    );
+}
+
+.station-card.active .station-info h3 {
     color: #fff;
 }
 
@@ -119,24 +144,38 @@ h1 {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 3px solid rgba(255, 255, 255, 0.1);
-
     border-radius: 20px;
-    padding: 15px 30px;
+    padding: 12px 30px;
 
     display: flex;
-    flex-direction: column;
+    flex-direction: row;        /* ← horizontal */
     align-items: center;
-    gap: 15px;
+    justify-content: space-between; /* ← info | botón | volumen */
+    gap: 20px;
 
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
     z-index: 1000;
 }
 
+.player-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    border-radius: 8px;
+    background-color: var(--bg-color);
+    padding: 4px;
+    flex-shrink: 0; /* evita que se deforme con el layout horizontal */
+}
+
 .player-info {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    text-align: center;
+    gap: 12px;
+}
+
+.player-text {
+    display: flex;
+    flex-direction: column;
 }
 
 #station-name {
@@ -318,9 +357,9 @@ input[type=range] {
 .auth-page {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+    align-items: flex-start;
     padding: 40px 20px;
+    min-height: auto;
 }
 
 .auth-card {
@@ -333,7 +372,7 @@ input[type=range] {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
 
-.auth header {
+.auth-header {
     text-align: center;
     margin-bottom: 30px;
 }
@@ -450,6 +489,17 @@ input[type=range] {
     font-size: 0.8rem;
     margin-top: 2px;
 }
+/* Hero más compacto para páginas de autenticación */
+.hero-header.hero-compact .hero-container {
+    max-height: 220px;
+    overflow: hidden;
+}
+
+.hero-header.hero-compact .hero-image {
+    object-fit: cover;
+    object-position: center top;
+}
+
 /* Diseño Responsivo para móviles */
 @media (max-width: 768px) {
     .app-container {
@@ -474,5 +524,12 @@ input[type=range] {
         flex-wrap: wrap;
         justify-content: center;
         margin-bottom: 20px;
+    }
+
+    /* ← Agrega solo esto aquí adentro */
+    #player-container {
+        flex-direction: column;
+        padding: 12px 20px;
+        gap: 10px;
     }
 }

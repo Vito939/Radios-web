@@ -6,12 +6,18 @@ const btnPause = document.getElementById('btn-pause');
 const volumeSlider = document.getElementById('volume-slider');
 const liveIndicator = document.getElementById('live-indicator');
 const stationNameDisplay = document.getElementById('station-name');
+const playerLogo = document.getElementById('player-logo');
 
 // === 1. Función Principal: Reproducir una Radio ===
-function playRadio(streamUrl, stationName) {
-    // Actualizamos nombre y mostramos indicador EN VIVO
+function playRadio(streamUrl, stationName, logoUrl) {
     stationNameDisplay.textContent = stationName;
     liveIndicator.classList.remove('hidden');
+
+    // Mostrar logo si existe
+    if (logoUrl) {
+        playerLogo.src = logoUrl;
+        playerLogo.classList.remove('hidden');
+    }
     
     // Habilitamos botones
     btnPlay.disabled = false;
