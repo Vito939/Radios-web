@@ -80,4 +80,4 @@ El objetivo principal es proveer una plataforma unificada, libre de distraccione
 
 ## Historial de cambios
 - **v0.2** — Login y registro maquetados con hero compacto, validación JS
-  de contraseñas y botón mostrar/ocultar. Paleta de colores revisada.
+  de contraseñas y botón mostrar/ocultar. Paleta de colores revisada. Modificado reproductor.
