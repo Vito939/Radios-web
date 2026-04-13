@@ -1,10 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Preguntas Frecuentes - RadioWeb Chile</title>
+    <link rel="icon" type="image/x-icon" href="assets/icons/radios.ico">
 </head>
 <body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <h2>RadiosWeb</h2>
+            </div>
 
+            <nav class="sidebar-nav">
+                <a href="index.html">Inicio</a>
+                <a href="login.html">Iniciar sesión</a>
+                <a href="registro.html">Crear cuenta</a>
+            </nav>
+
+            <div class="sidebar-auth">
+                <a href="index.html" class="btn-login">Volver al inicio</a>
+            </div>
+        </aside>
+
+        <div class="main-content">
+            <header class="hero-header hero-compact">
+                <div class="hero-container">
+                    <img src="assets/icons/chile-estaciones.jpg" alt="RadiosWeb Chile" class="hero-image">
+                    <div class="hero-overlay"></div>
+                </div>
+            </header>
+
+            <div class="auth-page">
+                <div class="auth-card" style="max-width: 720px;">
+                    <div class="auth-header">
+                        <h1>Preguntas frecuentes</h1>
+                        <p>Respuestas rápidas sobre el uso actual de la plataforma</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label>¿Qué puedo hacer ahora?</label>
+                        <p class="auth-footer" style="text-align: left; margin-top: 8px;">Escuchar radios disponibles, navegar entre vistas y preparar el acceso a favoritos y autenticación.</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label>¿Por qué algunas funciones aún no aparecen?</label>
+                        <p class="auth-footer" style="text-align: left; margin-top: 8px;">Porque el proyecto todavía está en una fase inicial de desarrollo y varias vistas están en construcción.</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label>¿Dónde se agregará el login real?</label>
+                        <p class="auth-footer" style="text-align: left; margin-top: 8px;">En la carpeta server, cuando se complete la lógica de autenticación y sesiones.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

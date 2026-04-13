@@ -16,11 +16,13 @@
 }
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--bg-color);
+    background: radial-gradient(circle at top, #10213b 0%, var(--bg-color) 55%);
     color: var(--text-color);
     margin: 0;
     padding: 0;
     padding-bottom: 100px;
+    line-height: 1.5;
+    color-scheme: dark;
 }
 
 .hero-header {
@@ -327,6 +329,16 @@ input[type=range] {
     color: var(--text-color);
 }
 
+.sidebar-nav a:focus-visible,
+.btn-login:focus-visible,
+.control-btn:focus-visible,
+.btn-submit:focus-visible,
+.toggle-password:focus-visible,
+input[type="range"]:focus-visible {
+    outline: 2px solid rgba(255, 0, 53, 0.85);
+    outline-offset: 2px;
+}
+
 .sidebar-auth {
     margin-top: auto;
 }
@@ -368,7 +380,7 @@ input[type=range] {
     padding: 40px;
     width: 100%;
     max-width: 420px;
-    border: 1px solid rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
 
