@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -17,16 +18,26 @@
             </div>
 
             <nav class="sidebar-nav">
-                <a href="index.html" class="active">Inicio</a>
+                <a href="index.php" class="active">Inicio</a>
                 <a href="favoritos.html">Mis favoritos</a>
                 <a href="faq.html">Preguntas frecuentes</a>
             </nav>
 
+            <div class="sidebar-search">
+                <input type="search" id="buscador" placeholder="Buscar radio..." aria-label="Buscar emisora" autocomplete="off">
+            </div>
+
             <div class="sidebar-auth">
-                <a href="login.html" class="btn-login">Iniciar Sesión</a>
+                <?php if (!empty($_SESSION['usuario_id'])): ?>
+                    <span style="color: var(--text-muted); font-size: 0.9rem;">
+                        Hola, <?= htmlspecialchars($_SESSION['nombre']) ?>
+                    </span>
+                <a href="server/logout.php" class="btn-login" style="margin-top: 10px;">Cerrar sesión</a>
+                <?php else: ?>
+                    <a href="login.php" class="btn-login">Iniciar Sesión</a>
+                <?php endif; ?>
             </div>
         </aside>
-
         <div class="main-content">
             <header class="hero-header">
                 <div class="hero-container">

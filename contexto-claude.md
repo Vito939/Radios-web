@@ -61,22 +61,36 @@ Los fuertes criterios de éxito permiten que el LLM se desplace de forma indepen
 ## Contexto del proyecto para Claude
 
 Proyecto: RadiosWeb Chile — plataforma para escuchar radios chilenas en vivo.
-Stack: HTML, CSS, JS vanilla en frontend. PHP + MySQL en backend (pendiente).
+Stack: HTML, CSS, JS vanilla en frontend. PHP + MySQL en backend.
 Repositorio: https://github.com/Vito939/Radios-web
+Servidor local: Laragon (www/radio_web → symlink a D:\Programacion\Personal\radio_web)
+URL local: http://localhost/radio_web
 
 ### Estado actual
-- Fase 1.1 ✅ — Dashboard con barra lateral implementado
-- Fase 1.2 ✅ — login.html y registro.html maquetados
-- Fase 1.3 ⏳ — Buscador y faq.html pendiente
-- Fases 2, 3, 4, 5 — pendientes (BD, PHP, favoritos)
+- Fase 1.1 ✅ — Dashboard con barra lateral
+- Fase 1.2 ✅ — login.php y registro.php maquetados
+- Fase 1.3 ✅ — Buscador en sidebar y faq.html
+- Fase 2   ✅ — BD MySQL: tablas usuarios, emisoras, favoritos
+- Fase 3.1 ✅ — conexion.php con PDO
+- Fase 3.2 ✅ — Registro con password_hash
+- Fase 3.3 ✅ — Login con sesiones
+- Fase 3.4 ⚠️ — logout.php escrito, pendiente verificar en Laragon
+- Fase 4, 5 — pendientes
 
 ### Decisiones tomadas
 - Prefijo auth- para clases de autenticación
 - Hero compacto en login/registro con clase .hero-compact
-- Validación de contraseñas en frontend (JS) y pendiente en backend (PHP)
-- Campo oculto "accion" en formularios para distinguir login vs registro en PHP
+- Validación de contraseñas en frontend (JS) y backend (PHP)
+- Campo oculto "accion" en formularios para distinguir login vs registro
 - Variables CSS en :root para toda la paleta de colores
+- index.html → index.php (session_start para mostrar nombre/logout)
+- login.html → login.php, registro.html → registro.php
+- PDO con ERRMODE_EXCEPTION, FETCH_ASSOC, EMULATE_PREPARES false
+- Mismo mensaje de error en login (no revela si correo existe)
+- session_destroy() en logout.php
 
-### Próximo paso
-Fase 1.3: buscador en vivo + faq.html
-Fase 3: escribir autenticacion.php con PHP y password_hash()
+### Próxima sesión — empezar aquí
+1. Verificar flujo completo: registro → login → logout en Laragon
+2. Si funciona: Fase 4.2 — get_radios.php devuelve emisoras en JSON,
+   app.js consume ese endpoint en vez de stations.js
+3. Luego: Fase 5 — botón favoritos + favoritos.php

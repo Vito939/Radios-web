@@ -14,6 +14,20 @@ El objetivo principal es proveer una plataforma unificada, libre de distraccione
 - Base de Datos: MySQL (Modelo relacional para perfiles de usuario, favoritos e historial).
 - Librerias Externas: hls.js para soporte de streaming avanzado (.m3u8).
 
+## Entorno de desarrollo
+- Servidor local: Laragon
+- URL local: http://localhost/radio_web
+- Base de datos: MySQL vía phpMyAdmin (Laragon) o DBeaver
+- Editor: VSCode
+- Repositorio: https://github.com/Vito939/Radios-web
+
+## Seguridad implementada
+- Consultas preparadas con PDO (prevención de SQL Injection)
+- Contraseñas encriptadas con password_hash() — nunca en texto plano
+- Verificación con password_verify()
+- Mensaje de error genérico en login (no revela si el correo existe)
+- Validación en frontend (JS) y backend (PHP)
+- session_destroy() en logout
 ---
 
 ## Roadmap y Checklist de Desarrollo
@@ -28,19 +42,19 @@ El objetivo principal es proveer una plataforma unificada, libre de distraccione
 ### Fase 1: Estructura y Navegacion (Frontend UI)
 - [x] 1.1 Reestructurar index.html: Implementar arquitectura de barra lateral (Dashboard).
 - [X] 1.2 Vistas de Auth: Maquetar login.html y registro.html (HTML/CSS).
-- [ ] 1.3 Interfaz UX: Añadir campo de buscador en UI y crear faq.html.
+- [X] 1.3 Interfaz UX: Añadir campo de buscador en UI y crear faq.html.
 
 ### Fase 2: Base de Datos (MySQL)
-- [ ] 2.1 Diseño MER: Definir modelo entidad-relación.
-- [ ] 2.2 Tabla usuarios: ID, correo, password (hash), fecha_registro.
-- [ ] 2.3 Tabla emisoras: Migrar catálogo estático a BD.
-- [ ] 2.4 Tablas intermedias: Crear favoritos e historial.
+- [X] 2.1 Diseño MER: Definir modelo entidad-relación.
+- [X] 2.2 Tabla usuarios: ID, correo, password (hash), fecha_registro.
+- [X] 2.3 Tabla emisoras: Migrar catálogo estático a BD.
+- [X] 2.4 Tablas intermedias: Crear favoritos e historial.
 
 ### Fase 3: Autenticacion y Sesiones (PHP)
-- [ ] 3.1 conexion.php: Conexión segura a MySQL vía PDO o MySQLi.
-- [ ] 3.2 Registro: Script PHP para encriptar contraseñas y crear usuarios.
-- [ ] 3.3 Login: Validación de credenciales e inicio de $_SESSION.
-- [ ] 3.4 Logout: Destrucción de sesión y redirección.
+- [x] 3.1 conexion.php: Conexión segura a MySQL vía PDO.
+- [x] 3.2 Registro: Script PHP para encriptar contraseñas y crear usuarios.
+- [x] 3.3 Login: Validación de credenciales e inicio de $_SESSION.
+- [x] 3.4 Logout: Destrucción de sesión y redirección.
 
 ### Fase 4: Interactividad y Buscador (JavaScript)
 - [ ] 4.1 Busqueda en vivo: Filtrado dinámico del DOM al escribir.
@@ -56,9 +70,9 @@ El objetivo principal es proveer una plataforma unificada, libre de distraccione
 
 ## Estructura del Proyecto (Proyectada)
 /
-├── index.html          # Vista principal (Dashboard y reproductor)
-├── login.html          # Interfaz de inicio de sesión
-├── registro.html       # Interfaz de creación de cuentas
+├── index.php           # Vista principal (Dashboard y reproductor)
+├── login.php           # Interfaz de inicio de sesión
+├── registro.php        # Interfaz de creación de cuentas
 ├── faq.html            # Preguntas frecuentes
 ├── README.md           # Documentación
 ├── css/
@@ -67,11 +81,13 @@ El objetivo principal es proveer una plataforma unificada, libre de distraccione
 │   ├── app.js          # Lógica de renderizado e interactividad
 │   ├── player.js       # Controlador de audio y HLS
 │   └── stations.js     # [A DEPRECAR] Catálogo temporal de emisoras
-├── server/             # Backend PHP
-│   ├── conexion.php    # Conexión a MySQL
-│   ├── auth.php        # Procesamiento de login y registro
-│   ├── get_radios.php  # API interna para cargar radios desde BD
+├── server/
+│   ├── conexion.php    # Conexión segura a MySQL vía PDO
+│   ├── autenticacion.php # Registro, login y logout con sesiones
+│   ├── get_radios.php  # API interna — devuelve emisoras en JSON
 │   └── favoritos.php   # Manejo de likes e historial
+├── database/
+│   └── schema.sql      # Script de creación de BD y datos iniciales
 └── assets/
     ├── img/            # Logotipos de radios
     └── icons/          # Favicons y recursos UI
@@ -79,5 +95,10 @@ El objetivo principal es proveer una plataforma unificada, libre de distraccione
 ---
 
 ## Historial de cambios
-- **v0.2** — Login y registro maquetados con hero compacto, validación JS
-  de contraseñas y botón mostrar/ocultar. Paleta de colores revisada. Modificado reproductor.
+- **v0.1** — Frontend inicial: reproductor AAC/HLS, controles play/pause/volumen, 
+  indicador EN VIVO, grilla de emisoras.
+- **v0.2** — Dashboard con barra lateral, login.php y registro.php maquetados, 
+  validación JS de contraseñas, botón mostrar/ocultar, paleta de colores revisada.
+- **v0.3** — Buscador en vivo en sidebar, faq.html creado, base de datos MySQL 
+  diseñada (usuarios, emisoras, favoritos), autenticación PHP completa con PDO, 
+  password_hash y sesiones, logout, index renombrado a .php.
