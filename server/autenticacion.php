@@ -9,7 +9,7 @@ if ($accion === 'registro') {
 } elseif ($accion === 'login') {
     iniciar_sesion();
 } else {
-    header('location : ../index.html');
+    header('location : ../index.php');
     exit;
 }
 
@@ -24,15 +24,15 @@ function registrar () {
 
     //validaciones basicas
     if (empty($nombre) || empty($correo) || empty($password)) {
-        volver_con_error('../registro.html', 'Todos los campos son obligatorios');
+        volver_con_error('../registro.php', 'Todos los campos son obligatorios');
     }
 
     if ($password !== $password2) {
-        volver_con_error('../registro.html', 'Las contraseñas no coinciden');
+        volver_con_error('../registro.php', 'Las contraseñas no coinciden');
     }
 
     if (strlen($password) < 8) {
-        volver_con_error('../registro.html', 'La contraseña debe tener al menos 8 caracteres');
+        volver_con_error('../registro.php', 'La contraseña debe tener al menos 8 caracteres');
     }
 
     // Verificar si el correo ya existe
@@ -40,7 +40,7 @@ function registrar () {
     $stmt->execute([$correo]);
 
     if ($stmt->fetch()) {
-        volver_con_error('../registro.html', 'Este correo ya está registrado.');
+        volver_con_error('../registro.php', 'Este correo ya está registrado.');
     }
     // Guardar usuario
     $hash = password_hash($password, PASSWORD_DEFAULT);

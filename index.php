@@ -10,7 +10,6 @@
 </head>
 
 <body>
-
     <div class="app-container">
         <aside class="sidebar">
             <div class="sidebar-logo">
@@ -26,7 +25,6 @@
             <div class="sidebar-search">
                 <input type="search" id="buscador" placeholder="Buscar radio..." aria-label="Buscar emisora" autocomplete="off">
             </div>
-
             <div class="sidebar-auth">
                 <?php if (!empty($_SESSION['usuario_id'])): ?>
                     <span style="color: var(--text-muted); font-size: 0.9rem;">

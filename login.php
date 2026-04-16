@@ -61,8 +61,9 @@
                             </div>
                         </div>
                         
-                        <?php if (!empty($_GET['error'])): ?>
-                            <div class="field-error" style="text-align:center; margin-bottom: 8px;"><?= htmlspecialchars($_SESSION['error']) ?>
+                        <?php if (!empty($_SESSION['error'])): ?>
+                            <div class="field-error" style="text-align:center; margin-bottom: 8px;">
+                                <?= htmlspecialchars($_SESSION['error']) ?>
                             </div>
                             <?php unset($_SESSION['error']); ?>
                         <?php endif; ?>

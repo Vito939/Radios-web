@@ -1,34 +1,31 @@
 document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('stations-container')
 
-    if (typeof stations === 'undefined') {
-        console.error('No se encontró la lista de estaciones')
-        return;
-    }
 
-    container.innerHTML = '';
+    //se piden las radios al servidor en vez del array esstatico
+    fetch('sserver/get_radios.php')
+        .then(res=> res.json())
+        .then(stations => renderStations(stations))
+        .catch(err => {
+            console.error('Error al cargar las emisoras:', err);
+            container.innerHTML = '<p>Error al cargar las emisoras. Por favor, inténtalo de nuevo más tarde.</p>';
+        });
+    
+    function renderStations(stations) {
+        container.innerHTML = '';
 
-    stations.forEach(station => {
-        const card = document.createElement('div');
-        card.classList.add('station-card');
+        stations.forEach(station => {
+            const card = document.createElement('div');
+            card.classList.add('station-card');
 
-        card.onclick = () => {
-            document.querySelectorAll('.station-card').forEach(c => {
-                c.classList.remove('active');
-            });
+            card.onclick = () => {
+                document.querySelectorAll('.station-card').forEach(c => c.classList.remove('active'));
             card.classList.add('active');
-            playRadio(station.stream, station.name, station.logo);
-        };
-
-        card.innerHTML = `
-            <img src="${station.logo}" alt="${station.name}" class="station-logo">
-            <div class="station-info">
-                <h3>${station.name}</h3>
-            </div>
-        `;
-
-        container.appendChild(card);
-    });
+            
+            playRadio(station.stream_url, station.nombre, station.logo_url);
+            };
+        });
+    }
 
     const buscador = document.getElementById('buscador');
     if (!buscador) return;
@@ -43,5 +40,4 @@ document.addEventListener('DOMContentLoaded', () => {
                 tarjeta.classList.toggle('hidden', !coincide);
             });
     });
-})  
-
+})
