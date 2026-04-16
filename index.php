@@ -80,8 +80,7 @@
         <audio id="radio-player"></audio>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@1.4.15"></script>
-    <script src="js/stations.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest/dist/hls.min.js"></script>
     <script src="js/player.js"></script>
     <script src="js/app.js"></script>
 </body>

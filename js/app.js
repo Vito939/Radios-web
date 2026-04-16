@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     //se piden las radios al servidor en vez del array esstatico
-    fetch('sserver/get_radios.php')
+    fetch('server/get_radios.php')
         .then(res=> res.json())
         .then(stations => renderStations(stations))
         .catch(err => {
@@ -11,21 +11,30 @@ document.addEventListener('DOMContentLoaded', () => {
             container.innerHTML = '<p>Error al cargar las emisoras. Por favor, inténtalo de nuevo más tarde.</p>';
         });
     
-    function renderStations(stations) {
-        container.innerHTML = '';
+function renderStations(stations) {
+    container.innerHTML = '';
 
-        stations.forEach(station => {
-            const card = document.createElement('div');
-            card.classList.add('station-card');
+    stations.forEach(station => {
+        const card = document.createElement('div');
+        card.classList.add('station-card');
 
-            card.onclick = () => {
-                document.querySelectorAll('.station-card').forEach(c => c.classList.remove('active'));
+        // Agregamos la estructura interna requerida por el buscador
+        card.innerHTML = `
+            <img src="${station.logo_url}" alt="Logo ${station.nombre}" class="station-logo" onerror="this.src='assets/icons/radios.png'">
+            <h3>${station.nombre}</h3>
+        `;
+
+        card.onclick = () => {
+            document.querySelectorAll('.station-card').forEach(c => c.classList.remove('active'));
             card.classList.add('active');
             
             playRadio(station.stream_url, station.nombre, station.logo_url);
-            };
-        });
-    }
+        };
+
+        // Insertamos el nodo completamente armado en el contenedor principal
+        container.appendChild(card);
+    });
+}
 
     const buscador = document.getElementById('buscador');
     if (!buscador) return;
