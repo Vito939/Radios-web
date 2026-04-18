@@ -18,8 +18,8 @@
 
             <nav class="sidebar-nav">
                 <a href="index.php">Inicio</a>
-                <a href="favoritos.html">Mis favoritos</a>
-                <a href="faq.html">Preguntas frecuentes</a>
+                <a href="favoritos.php">Mis favoritos</a>
+                <a href="faq.php">Preguntas frecuentes</a>
             </nav>
 
             <div class="sidebar-auth">

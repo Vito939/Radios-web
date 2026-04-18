@@ -537,6 +537,171 @@ input[type="range"]:focus-visible {
     object-position: center top;
 }
 
+.faq-page {
+    padding: 30px 30px 60px;
+    max-width: 760px;
+}
+
+.faq-page-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin: 0 0 6px 0;
+}
+
+.faq-page-subtitle {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin: 0 0 36px 0;
+}
+
+/* Secciones temáticas */
+.faq-section {
+    margin-bottom: 40px;
+}
+
+.faq-section-title {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent-color);
+    margin: 0 0 14px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 0, 53, 0.2);
+}
+
+/* Acordeón */
+.faq-item {
+    border-bottom: 1px solid var(--border);
+}
+
+.faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    text-align: left;
+    padding: 16px 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    transition: color 0.2s;
+}
+
+.faq-question:hover {
+    color: #fff;
+}
+
+.faq-question:focus-visible {
+    outline: 2px solid rgba(255, 0, 53, 0.85);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+.faq-icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    color: var(--accent-color);
+    transition: transform 0.25s ease;
+}
+
+.faq-item.open .faq-icon {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    display: none;
+    padding: 0 0 18px 0;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+.faq-item.open .faq-answer {
+    display: block;
+}
+
+.faq-answer p {
+    margin: 0 0 10px 0;
+}
+
+.faq-answer p:last-child {
+    margin-bottom: 0;
+}
+
+.faq-answer ol,
+.faq-answer ul {
+    margin: 8px 0 10px 20px;
+    padding: 0;
+}
+
+.faq-answer li {
+    margin-bottom: 6px;
+}
+
+/* Etiqueta "Próximamente" */
+.badge-soon {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background-color: rgba(255, 0, 53, 0.12);
+    color: #ffccd6;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+/* Lista de radios disponibles */
+.radio-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.radio-chip {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    color: var(--text-color);
+}
+
+/* Enlace de acción dentro de respuestas */
+.faq-answer a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.faq-answer a:hover {
+    text-decoration: underline;
+}
+
+/* Tip destacado */
+.tip-box {
+    background-color: rgba(255, 0, 53, 0.07);
+    border-left: 3px solid var(--accent-color);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 14px;
+    margin-top: 10px;
+    font-size: 0.88rem;
+    color: var(--text-muted);
+}
+
+.tip-box strong {
+    color: var(--text-color);
+}
+
 /* Diseño Responsivo para móviles */
 @media (max-width: 768px) {
     .app-container {

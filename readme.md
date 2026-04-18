@@ -57,8 +57,8 @@ El objetivo principal es proveer una plataforma unificada, libre de distraccione
 - [x] 3.4 Logout: Destrucción de sesión y redirección.
 
 ### Fase 4: Interactividad y Buscador (JavaScript)
-- [ ] 4.1 Busqueda en vivo: Filtrado dinámico del DOM al escribir.
-- [ ] 4.2 Carga dinamica: Consumir lista de radios desde MySQL (vía PHP) reemplazando el JSON estático.
+- [X] 4.1 Busqueda en vivo: Filtrado dinámico del DOM al escribir.
+- [X] 4.2 Carga dinamica: Consumir lista de radios desde MySQL (vía PHP) reemplazando el JSON estático.
 
 ### Fase 5: Favoritos e Historial (Full Stack)
 - [ ] 5.1 Boton "Me Gusta": Lógica UI en las tarjetas de radio.
