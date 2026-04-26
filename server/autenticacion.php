@@ -1,4 +1,17 @@
 <?php
+if (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] !== 'on') {
+}
+
+$domain = strtolower(preg_replace('/:\d+$/', '', $_SERVER['HTTP_HOST'] ?? ''));
+
+session_set_cookie_params([
+    'lifetime' => 0, // La cookie se eliminará al cerrar el navegador
+    'path' => '/',
+    'domain' => $domain, // Asigna la cookie estrictamente al dominio extacto que esta visitando.
+    'secure' => true,
+    'httponly' => true, // No accesible por JavaScript
+    'samesite' => 'Lax' // Protege contra CSRF
+]);
 session_start();
 require_once 'conexion.php';
 

@@ -194,7 +194,7 @@ Consumido por `js/app.js` al cargar la página de inicio.
  
 ## Roadmap
  
-- [x] Reproductor HLS/AAC con controles
+- [x] Reproductor HLS/AAC con controles 
 - [x] Dashboard con barra lateral
 - [x] Autenticación completa (registro, login, logout)
 - [x] Emisoras cargadas desde MySQL
