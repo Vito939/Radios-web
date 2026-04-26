@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php require_once 'server/session_config.php'; ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -24,7 +24,7 @@
             <div class="sidebar-auth">
                 <?php if (!empty($_SESSION['usuario_id'])): ?>
                     <span style="color: var(--text-muted); font-size: 0.9rem;">
-                        Hola, <?= htmlspecialchars($_SESSION['nombre']) ?>
+                        Hola, <?= htmlspecialchars($_SESSION['nombre'], ENT_QUOTES, 'UTF-8') ?>
                     </span>
                     <a href="server/logout.php" class="btn-login" style="margin-top: 10px;">Cerrar sesión</a>
                 <?php else: ?>

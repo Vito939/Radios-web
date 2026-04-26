@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php require_once 'server/session_config.php'; ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -77,7 +77,7 @@
 
                         <?php if (!empty($_SESSION['error'])): ?>
                             <div class="field-error" style="text-align:center; margin-bottom: 8px;">
-                                <?= htmlspecialchars($_SESSION['error']) ?>
+                                <?= htmlspecialchars($_SESSION['error'], ENT_QUOTES, 'UTF-8') ?>
                             </div>
                             <?php unset($_SESSION['error']); ?>
                         <?php endif; ?>

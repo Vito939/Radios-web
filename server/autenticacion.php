@@ -1,18 +1,5 @@
 <?php
-if (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] !== 'on') {
-}
-
-$domain = strtolower(preg_replace('/:\d+$/', '', $_SERVER['HTTP_HOST'] ?? ''));
-
-session_set_cookie_params([
-    'lifetime' => 0, // La cookie se eliminará al cerrar el navegador
-    'path' => '/',
-    'domain' => $domain, // Asigna la cookie estrictamente al dominio extacto que esta visitando.
-    'secure' => true,
-    'httponly' => true, // No accesible por JavaScript
-    'samesite' => 'Lax' // Protege contra CSRF
-]);
-session_start();
+require_once 'session_config.php';
 require_once 'conexion.php';
 
 $accion = $_POST['accion'] ?? '';
@@ -22,7 +9,7 @@ if ($accion === 'registro') {
 } elseif ($accion === 'login') {
     iniciar_sesion();
 } else {
-    header('location : ../index.php');
+    header('Location: ../index.php');
     exit;
 }
 
@@ -36,6 +23,12 @@ function registrar () {
     $password2 = $_POST['password2'] ?? '';
 
     //validaciones basicas
+    if (!preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 _-]{3,20}$/', $nombre)) {
+    volver_con_error('../registro.php', 'El nombre solo puede contener letras, números, espacios, guiones y guiones bajos');
+    }
+    if (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
+    volver_con_error('../registro.php', 'El formato del correo no es válido');
+    }
     if (empty($nombre) || empty($correo) || empty($password)) {
         volver_con_error('../registro.php', 'Todos los campos son obligatorios');
     }
@@ -59,6 +52,8 @@ function registrar () {
     $hash = password_hash($password, PASSWORD_DEFAULT);
     $stmt = $pdo->prepare('INSERT INTO usuarios (nombre, correo, password_hash) VALUES (?, ?, ?)');
     $stmt->execute([$nombre, $correo, $hash]);
+
+    session_regenerate_id(true); // true = elimina la sesión anterior
 
     // Iniciar sesión automáticamente tras registrarse
     $_SESSION['usuario_id'] = $pdo->lastInsertId();
@@ -86,6 +81,8 @@ function iniciar_sesion() {
     if (!$usuario || !password_verify($password, $usuario['password_hash'])) {
         volver_con_error('../login.php', 'Correo o contraseña incorrectos');
     }
+    
+    session_regenerate_id(true); // true = elimina la sesión anterior
 
     // Iniciar sesión
     $_SESSION['usuario_id'] = $usuario['id'];
